@@ -1,0 +1,46 @@
+<div class="secondary_navbar">
+	<ul>
+		<li><%= link_to "Other material", materials_path %></li>
+
+		<% @related_courses.each do |course| %>
+			<li>
+				<%= link_to "Other "+course.name+" material", courseMaterial_path(course) %>
+			</li>
+		<% end %>
+	</ul>
+</div>
+
+<div id="sidebar" class="main_element">
+
+	<b>Useful for...</b>
+	
+	<br><br>
+
+	<% @related_courses.each do |course| %>
+		<%= link_to course.name, course_path(course) %><br><br>
+	<% end %>
+
+</div>
+
+
+<div id="main" class="main_element">
+
+	<h1><%= @material.name %></h1>
+
+	<p>
+		<b>File description</b>:
+		<% if(@material.description) %>
+			<i><%= @material.description.html_safe %></i>
+		<% end %>
+
+		<br><br>
+
+		<b>Uploaded</b>: <i><%= @material.updated_at %></i>
+
+		<br><br>
+
+		<div style="text-align:center"><%= link_to image_tag("/assets/main/download.png", :class => "download_image"), material_download_path(@material) %></div>
+
+	</p>
+
+</div>

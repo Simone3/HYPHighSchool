@@ -1,0 +1,31 @@
+<div class="secondary_navbar">
+	<ul>
+		<li><%= link_to "Courses by grade", coursesGrades_path %></li>
+		<li><%= link_to "Courses by department", coursesDepartments_path %></li>
+	</ul>
+</div>
+
+<div id="main_no_sidebar" class="main_element">
+	
+	<h1 class="content_centered">Our<%=@extra_name%> courses</h1>
+
+	<p class="content_centered">
+		<%= @description.html_safe %>
+	</p>
+	<br>
+
+	<p class="content_in_2_columns content_centered">
+
+		<% @courses.keys.sort.each do |starting_letter| %>
+			
+			<b><%= starting_letter %></b><br><br>
+
+			<% @courses[starting_letter].each do |course| %>
+				<%= link_to course.name, course_path(course) %><br>
+			<% end %>
+			<br><br>
+		<% end %>
+
+	</p>
+
+</div>

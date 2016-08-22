@@ -1,0 +1,11 @@
+<div id="sidebar" class="main_element">
+
+	<% @all_to_all_links.each do |link| %>
+		<% if(!current_page?(link[1])) %>
+			<%= link_to link[0], link[1], :class => link[2] %>
+			<br><br>
+		<% end %>
+	<% end %>
+
+</div>
+

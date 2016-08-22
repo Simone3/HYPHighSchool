@@ -1,0 +1,45 @@
+<div class="secondary_navbar" class="main_element">
+
+	<ul>
+		<li><%= link_to "Other news", all_news_path %></li>
+	</ul>
+
+</div>
+
+
+<div id="main_no_sidebar" class="main_element">
+	
+	<div class="guided_tour_left">
+
+		<% if(@previous) %>
+			<%= link_to image_tag("/assets/main/arrow_left.png"), news_path(@previous) %>
+		<% else %>
+			<%= image_tag("/assets/main/arrow_left.png", :class => "grayscale_image") %>
+		<% end %>
+
+	</div>
+
+	<div class="guided_tour_center">
+		<span class="news_title"><%= @news.title %></span>
+		<span class="news_date"><%= @news.publication_date %></span>
+	</div>
+
+	<div class="guided_tour_right">
+
+		<% if(@next) %>
+			<%= link_to image_tag("/assets/main/arrow_right.png"), news_path(@next) %>
+		<% else %>
+			<%= image_tag("/assets/main/arrow_right.png", :class => "grayscale_image") %>
+		<% end %>
+
+	</div>
+
+	<br><br>
+
+	<div style="clear: both;">
+		<% if(@news.content) %>
+			<%= @news.content.html_safe %>
+		<% end %>
+	</div>
+
+</div>

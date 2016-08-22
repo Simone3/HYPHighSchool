@@ -1,0 +1,27 @@
+<div class="secondary_navbar">
+	<ul>
+		<li><%= link_to "Other Courses", courses_path %></li>
+		<li><%= link_to "Other "+@course.grade.ordinalize+" Grade Courses", coursesByGrade_path(@course.grade) %></li>
+		<li><%= link_to "Other "+@department.name+" Courses", coursesByDepartment_path(@department.id) %></li>
+	</ul>
+</div>
+
+<%= render :partial => "layouts/all_to_all_links", object: @all_to_all_links %>
+
+<div id="main" class="main_element">
+	<h1><%= @course.name %></h1>
+
+	<p>
+		<%= @course.name %> is a <b><%= @course.grade.ordinalize %></b> grade <b><%= link_to @department.name, "#", :class => "inactive_link" %></b> course held by <b><%= link_to @teacher_name, "#", :class => "inactive_link" %></b>.<br><br>
+
+		<% if(@course.description && @course.description!='') %>
+			<%= @course.description.html_safe %>
+		<% else %>
+			<i>[Description missing...]</i>
+		<% end %>
+
+		<br><br>
+
+		<b>Classroom</b>: <i><%= link_to @structure.name, "#", :class =>  "inactive_link" %></i>, <%= @course.classroom %>
+	</p>
+</div>

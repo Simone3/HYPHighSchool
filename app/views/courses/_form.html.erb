@@ -1,0 +1,54 @@
+<%= form_for(@course) do |f| %>
+
+	<% if @course.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+			<ul>
+				<% @course.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<p>
+		<%= f.label :name %> <span style="color:red">*</span><br>
+		<%= f.text_field :name %>
+	</p>
+	<p>
+		<%= f.label :description %><br>
+		<%= f.text_area :description %>
+	</p>
+	<p>
+		<%= f.label :department_id %> <span style="color:red">*</span><br>
+		<%= collection_select(:course, :department_id, Department.all, :id, :name, {:include_blank => true, :default => nil}) %>
+	</p>
+	<p>
+		<%= f.label :grade %> <span style="color:red">*</span><br>
+		<%= f.select :grade, [ ['', -1], ['9th', 9], ['10th', 10], ['11th', 11], ['12th', 12] ] %>
+	</p>
+	<p>
+		<%= f.label :teacher_id %> <span style="color:red">*</span><br>
+		<%= collection_select(:course, :teacher_id, Teacher.all, :id, :last_name, {:include_blank => true, :default => nil}) %>
+	</p>
+	<p>
+		<%= f.label :structure_id %> <span style="color:red">*</span><br>
+		<%= collection_select(:course, :structure_id, Structure.all, :id, :name, {:include_blank => true, :default => nil}) %>
+	</p>
+	<p>
+		<%= f.label :classroom %> <span style="color:red">*</span><br>
+		<%= f.text_field :classroom %>
+	</p>
+	<p>
+		<%= f.label :books %><br>
+		<%= f.text_area :books %>
+	</p>
+	<p>
+		<%= f.label :program %><br>
+		<%= f.text_area :program %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+
+<% end %>
