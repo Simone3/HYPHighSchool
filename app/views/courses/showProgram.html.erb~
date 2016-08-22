@@ -1,9 +1,0 @@
-<h1>Books for <%= @course.name %></h1>
-
-<p>
-	<%= @course.books %>
-	
-	<br><br>
-	
-	<%= link_to "Description", course_path %>
-</p>
